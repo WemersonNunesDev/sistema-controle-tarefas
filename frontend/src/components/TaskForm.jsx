@@ -1,15 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import '../index.css'
 import Buttons from './Buttons'
 
-export default function TaskForm() {
+export default function TaskForm({ onAddTarefa }) {
     const [tarefa, setTarefa] = useState('')
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(`Tarefa ${tarefa} salva`)
-
-        setTarefa('')
+        if (tarefa.trim()) {
+            onAddTarefa(tarefa.trim())
+            setTarefa('')
+        }
     }
 
     const formDesign = 'px-1.5 py-2 grid grid-cols-[40dvw_10dvw] gap-4';
@@ -35,7 +36,7 @@ export default function TaskForm() {
                 <Buttons
                     type='submit'
                     design='primary'
-                    description='Salvar'
+                    description='Adicionar'
                 />
             </form>
         </div>
