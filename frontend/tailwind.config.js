@@ -8,6 +8,7 @@ export default {
         extend: {
             screen: {
                 'superwide': '1280px',
+                'medwide': '820px',
             },
         },
     },

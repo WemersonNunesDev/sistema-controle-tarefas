@@ -1,6 +1,5 @@
 const express = require('express');
 const cors = require('cors');
-const PORT = 3001;
 const app = express();
 
 const useRoutes = require('./routes/users');
@@ -11,8 +10,9 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/users', useRoutes);
-app.use('/tasks', taskRoutes);
+app.use('/api/tasks', taskRoutes);
 
+const PORT = 5050;
 app.listen(PORT, () => {
     console.log(`Servidor rodando em http://localhost:${PORT}`);
 });

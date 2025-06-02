@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 // GET /tasks - Listar todas as tarefas
 router.get('/', async (req, res) => {
     const tasks = await prisma.task.findMany({
-        orderBy: { createdAt: 'desc' },
+        orderBy: { createdAt: 'asc' },
     });
     res.json(tasks);
 });
@@ -26,23 +26,31 @@ router.put('/:id', async (req, res) => {
     const { id } = req.params;
     const { title, description, done } = req.body;
 
-    const updated = await prisma.task.update({
-        where: { id: Number(id) },
-        data: { title, description, done },
-    });
+    try {
+        const updated = await prisma.task.update({
+            where: { id: Number(id) },
+            data: { title, description, done },
+        });
 
-    res.json(updated);
+        res.json(updated);
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao atualizar tarefa.' })
+    }
 });
 
 // DELETE /tasks/:id - Excluir tarefa
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
 
-    await prisma.task.delete({
-        where: { id: Number(id) },
-    });
+    try {
+        await prisma.task.delete({
+            where: { id: Number(id) },
+        });
 
-    res.status(204).send();
+        res.status(204).send();
+    } catch (error) {
+        res.status(500).json({ error: 'Erro ao deletar tarefa.' })
+    }
 })
 
 module.exports = router;
