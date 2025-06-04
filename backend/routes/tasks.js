@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 // GET /tasks - Listar todas as tarefas
 router.get('/', async (req, res) => {
     const tasks = await prisma.task.findMany({
-        orderBy: { createdAt: 'asc' },
+        orderBy: { createdAt: 'desc' },
     });
     res.json(tasks);
 });

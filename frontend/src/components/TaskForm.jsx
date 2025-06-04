@@ -13,8 +13,8 @@ export default function TaskForm({ onAddTarefa }) {
         }
     }
 
-    const formDesign = 'px-1.5 py-2 grid grid-cols-[40dvw_10dvw] gap-4';
-    const inputDesign = 'px-4 py-1 rounded outline focus:outline-blue-500'
+    const formDesign = 'px-1.5 py-2 flex gap-4';
+    const inputDesign = 'w-full px-4 py-1 rounded outline focus:outline-blue-500'
 
     return (
         <div className='mt-7'>
@@ -36,6 +36,7 @@ export default function TaskForm({ onAddTarefa }) {
                 <Buttons
                     type='submit'
                     design='primary'
+                    style='w-[249px]'
                     description='Adicionar'
                 />
             </form>

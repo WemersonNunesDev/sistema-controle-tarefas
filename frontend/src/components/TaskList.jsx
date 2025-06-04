@@ -2,10 +2,10 @@ import '../index.css'
 import Buttons from './Buttons';
 
 export default function TaskList({ tarefas, marcarComoFeita, abrirModalExcluir, abrirModalEditar }) {
-    const tdStyle = ''
-    const thStyle = 'text-xl'
+    const tdStyle = 'lg:text-base md:text-sm'
+    const thStyle = 'lg:text-xl md:text-sm'
 
-    if (tarefas.length === 0) return <p className='pl-1 mt-2'>Nenhuma tarefa adicionada</p>;
+    if (tarefas.length === 0) return <p className='pl-1 mt-8'>Nenhuma tarefa adicionada</p>;
 
     return (
         <table className='w-full border-collapse mt-8'>
@@ -25,11 +25,11 @@ export default function TaskList({ tarefas, marcarComoFeita, abrirModalExcluir, 
                         <td className={`${tdStyle} capitalize`}>{tarefa.title}</td>
                         <td className={`${tdStyle}`}>{tarefa.done ? 'Feito' : 'Pendente'}</td>
                         <td className={`${tdStyle}`}>{new Date(tarefa.createdAt).toLocaleDateString()}</td>
-                        <td className={`${tdStyle} py-2 grid grid-cols-[72px_72px_72px] gap-2`}>
+                        <td className={`${tdStyle} py-2 flex gap-2`}>
                             {!tarefa.done && (
                                 <Buttons 
                                     description='Concluir'
-                                    design='sucess'
+                                    design='primary'
                                     onAcao={() => marcarComoFeita(tarefa.id)}
                                 />
                             )}

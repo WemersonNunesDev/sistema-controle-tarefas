@@ -77,8 +77,8 @@ function App() {
   }
 
   const design = {
-    style: 'mx-auto my-0 max-w-[1024px] text-slate-800',
-    responsive: 'superwide:max-w-[1024px] medwide:max-w-[768px]'
+    style: 'mx-auto my-0 text-slate-800',
+    responsive: 'xl:max-w-[1024px] lg:max-w-[820px] md:max-w-[614.4px]'
   }
 
   return (
@@ -94,7 +94,7 @@ function App() {
       {/* Modal excluir */}
       <Modal show={showModalExcluir} onClose={() => setShowModalExcluir(false)}>
         <h2 className='text-lg text-gray-900 font-semibold'>Confirmar exclusão?</h2>
-        <p>Tem certeza que deseja apagar a tarfea <strong>{tarefaSelecionada?.title}</strong>?</p>
+        <p>Tem certeza que deseja apagar a tarfea <strong className='capitalize'>{tarefaSelecionada?.title}</strong>?</p>
 
         <div className='flex justify-end gap-4 mt-4'>
           <Buttons 
@@ -105,12 +105,18 @@ function App() {
               setTarefaSelecionada(null)
             }}
           />
-          <Buttons
+          <button
+            onClick={confirmarExcluir}
+            className='bg-transparent outline-2 outline-red-500 text-red-500 text-base font-semibold px-1.5 rounded cursor-pointer'
+          >
+            Sim
+          </button>
+          {/* <Buttons
             description='Sim'
             design='alert'
             style='bg-transparent outline-1 outline-red-500 text-red-500'
             onAcao={confirmarExcluir}
-          />
+          /> */}
         </div>
       </Modal>
 
@@ -133,11 +139,11 @@ function App() {
         />
         <div className="flex justify-end gap-4">
           <button
-            className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+            className="px-4 py-2 text-sm text-slate-50 font-semibold bg-gray-400 rounded hover:bg-gray-300 cursor-pointer"
             onClick={() => setShowModalEditar(false)}
           >Cancelar</button>
           <button
-            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+            className="px-4 py-2 bg-blue-500 text-slate-50 font-semibold rounded hover:bg-blue-400"
             onClick={confirmarEditar}
           >Salvar</button>
         </div>
